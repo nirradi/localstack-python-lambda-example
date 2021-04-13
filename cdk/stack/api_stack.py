@@ -13,7 +13,7 @@ class MyAPIService(core.Stack):
         handler = lambda_.Function(self,'MyPyLambda',
             handler='lambda_handler.handler',
             runtime=lambda_.Runtime.PYTHON_3_7,
-            code=lambda_.Code.asset('lambda'),
+            code=lambda_.Code.asset('/code/lambda'),
         )
 
         api = apigateway.RestApi(self, "MyPys-api",

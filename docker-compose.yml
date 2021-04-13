@@ -29,6 +29,7 @@ services:
       - LOCALSTACK_HOST=localstack
     volumes:
       - ./cdk/:/opt/stack
+      - ./lambda:/code/lambda
 
   sam-api:
     image: samcli:latest
