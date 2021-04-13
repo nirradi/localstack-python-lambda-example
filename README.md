@@ -4,7 +4,7 @@
 - docker
 - docker-compose
 
-## Bring it up
+## Deploy the lambda to localstack
 1)
 bring up localstack (wait for Ready to continue):
 
@@ -31,3 +31,11 @@ https://{restApiId}.execute-api.us-east-1.localhost/prod/
 curl http://localstack:4566/restapis/{restApiId}/prod/_user_request_/
 ```
 (notice that the url is localstack, replace with localhost if running from host and not container)
+
+
+## Start the SAM local development server
+
+note: this doesn't work properly because of an issue with [aws-sam-cli=1.22](https://github.com/aws/aws-sam-cli/issues/2492)
+```
+ROOT=$(pwd) docker-compose up sam-ap
+```

@@ -30,3 +30,18 @@ services:
     volumes:
       - ./cdk/:/opt/stack
 
+  sam-api:
+    image: samcli:latest
+    command: local start-api -d 5858 --host 0.0.0.0 --warm-containers EAGER
+    build:
+      context: ./
+      dockerfile: Dockerfile-sam
+    ports:
+      - 3000:3000
+    environment:
+      - VOLUME_DIR=${ROOT}
+      - DOCKER_HOST=unix:///var/run/docker.sock
+    working_dir: ${ROOT}
+    volumes:
+      - ${ROOT}:${ROOT}
+      - "/var/run/docker.sock:/var/run/docker.sock"
